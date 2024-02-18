@@ -49,4 +49,21 @@ class NoteViewModel: ObservableObject {
         }
     }
     
+    
+    // function to delete data
+    func deleteData(at indexSet: IndexSet){
+        indexSet.forEach{
+            index in
+            let note = notes[index]
+            databaseReference.document(note.id ?? " ").delete {
+                error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("Note with ID \(note.id ?? " ") was succesfully deleted")
+                }
+            }
+        }
+    }
+    
 }

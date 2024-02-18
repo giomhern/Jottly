@@ -21,7 +21,7 @@ struct ContentView: View {
                         VStack(alignment: .leading){
                             Text(Note.title ?? "").font(.system(size: 22, weight: .regular))
                         }.frame(maxHeight: 200)
-                    }}
+                    }}.onDelete(perform: self.viewModel.deleteData(at:))
             }.onAppear(perform: {
                 self.viewModel.fetchData()
             })
