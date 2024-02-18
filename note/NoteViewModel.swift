@@ -7,6 +7,8 @@
 
 import FirebaseFirestore
 
+
+// centralize all of the functionality you need and then use them in the your views
 class NoteViewModel: ObservableObject {
     @Published var notes = [Note]()
     private var databaseReference =  Firestore.firestore().collection("Notes")
@@ -21,6 +23,7 @@ class NoteViewModel: ObservableObject {
             }
     }
     
+    // function to fetch all of the data
     func fetchData() {
         databaseReference.addSnapshotListener{
             (querySnapshot, error) in
@@ -33,4 +36,17 @@ class NoteViewModel: ObservableObject {
             }
         }
     }
+    
+    // function to edit specific notes
+    func updateData(title: String, id: String){
+        databaseReference.document(id).updateData(["title": title]){
+            error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Note updated successfully")
+            }
+        }
+    }
+    
 }

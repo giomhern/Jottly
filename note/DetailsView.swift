@@ -9,9 +9,40 @@ import Foundation
 import SwiftUI
 
 struct DetailsView: View {
+    @State private var presentAlert = false // handle presentation of alert
+    @State private var titleText: String = "" // new entry of Textfield
+    @ObservedObject private var viewModel = NoteViewModel()
+    
     var note: Note
     var body: some View {
-        Text("\(note.title ?? "")")
+        NavigationStack{
+            ScrollView{
+                VStack{
+                    Text("\(note.title ?? "")").font(.system(size: 22, weight: .regular)).padding()
+                    Spacer()
+                }
+            }
+        }.navigationTitle("Details").toolbar {
+            ToolbarItemGroup(placement: .confirmationAction){
+                Button {
+                    presentAlert = true
+                } label: {
+                    Text("Edit").bold()
+                }.alert("Note", isPresented: $presentAlert, actions: {
+                    TextField("\(note.title ?? "")", text: $titleText)
+                    Button("Update", action: {
+                        self.viewModel.updateData(title: titleText, id: note.id ?? " ")
+                        titleText = " "
+                    })
+                    Button("Cancel", role: .cancel, action: {
+                        presentAlert = false
+                        titleText = ""
+                    })
+                }, message: {
+                    Text("Write your new note here")
+                })
+            }
+        }
     }
 }
 

@@ -11,6 +11,5 @@ import FirebaseFirestoreSwift
 struct Note: Codable {
     @DocumentID var id: String?
     var title: String?
-    
 }
 
