@@ -17,7 +17,20 @@ class NoteViewModel: ObservableObject {
                 if let error = error {
                     // Handle the error
                     print("Error adding document: \(error.localizedDescription)")
-                } 
+                }
             }
+    }
+    
+    func fetchData() {
+        databaseReference.addSnapshotListener{
+            (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            self.notes = documents.compactMap {
+                queryDocumentSnapshot -> Note? in return try? queryDocumentSnapshot.data(as: Note.self)
+            }
+        }
     }
 }
