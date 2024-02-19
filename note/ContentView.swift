@@ -8,43 +8,51 @@
 import SwiftUI
 
 struct ContentView: View {
-    // State variables to control the display of the sheet and the detent size.
-    @State private var showingSheet = false
+    
+    @ObservedObject var viewModel = NoteViewModel()
+    @State private var showSheet: Bool = false
     @State private var postDetent = PresentationDetent.medium
-    @ObservedObject private var viewModel = NoteViewModel()
+    @ObservedObject var authModel = AuthViewModel()
+    
     var body: some View {
-        // Using NavigationStack to enable navigation between views.
         NavigationStack {
             List {
-                ForEach(viewModel.notes, id: \.id){
-                    Note in NavigationLink(destination: DetailsView(note: Note)){
-                        VStack(alignment: .leading){
+                ForEach(viewModel.notes, id:\.id) { Note in
+                    NavigationLink(destination: DetailsView(note: Note)) {
+                        VStack(alignment: .leading) {
                             Text(Note.title ?? "").font(.system(size: 22, weight: .regular))
                         }.frame(maxHeight: 200)
-                    }}.onDelete(perform: self.viewModel.deleteData(at:))
-            }.onAppear(perform: {
-                self.viewModel.fetchData()
-            })
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Text("\(viewModel.notes.count) notes") // Replace X with the number of notes
-                    Spacer()
-                    Button(action: {
-                        showingSheet.toggle()
-                    }) {
-                        Image(systemName: "square.and.pencil")
                     }
-                    .imageScale(.large)
-                }
-            }
-            .navigationTitle("Notes")
-            .sheet(isPresented: $showingSheet) {
-                FormView().presentationDetents([.large, .medium]) // Make sure FormView is correctly defined elsewhere
-            }
+                }.onDelete(perform: self.viewModel.deleteData(at:))
+            }.onAppear(perform: self.viewModel.fetchData)
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        Text("\(viewModel.notes.count) notes")
+                    }
+                    ToolbarItem(placement: .bottomBar) {
+                        Button {
+                            showSheet.toggle()
+                        }  label: {
+                            Image(systemName: "square.and.pencil")
+                                .imageScale(.large)
+                        }.sheet(isPresented: $showSheet) {
+                            FormView().presentationDetents([.large, .medium])
+                        }
+                    }
+                    ToolbarItemGroup(placement: .cancellationAction) {
+                        Button {
+                            authModel.signOut()
+                        } label: {
+                            Text("Logout")
+                        }
+                    }
+                }.navigationTitle("Notes")
         }
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }

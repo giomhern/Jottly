@@ -14,46 +14,49 @@ struct SignUpView: View {
     @EnvironmentObject private var authModel: AuthViewModel
     @State private var showingSheet = false
     
-     var body: some View {
-         NavigationStack {
-             Form {
-                 Section {
-                     TextField("Email", text: $emailAddress)
-                         .textContentType(.emailAddress)
-                         .keyboardType(.emailAddress)
-                     SecureField("Password", text: $password)
-                 }
-   
-                 Section {
-                     Button(action: {
-                         // TODO
-                         authModel.signUp(emailAddress: emailAddress, password: password)
-                     }) {
-                         Text("Sign Up").bold()
-                     }
-                 }
-                 Section(header: Text("If you already have an account:")) {
-                     Button(action: {
-                         // TODO
-                         authModel.signIn(emailAddress: emailAddress,
-                                          password: password)
-                     }) {
-                         Text("Sign In").bold()
-                     }
-                 }
-             }.navigationTitle("Welcome")
-                 .toolbar {
-                     ToolbarItemGroup(placement: .cancellationAction) {
-                         Button {
-                             showingSheet.toggle()
-                         } label: {
-                             Text("Forgot password?")
-                         }
-                     }
-                     
-                 }
-         }
-     }
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("Email", text: $emailAddress)
+                        .textContentType(.emailAddress)
+                        .keyboardType(.emailAddress)
+                        .textInputAutocapitalization(.never)
+                    SecureField("Password", text: $password)
+                }
+                Section {
+                    Button(action: {
+                        // TODO
+                        authModel.signUp(emailAddress: emailAddress,
+                                         password: password)
+                    }) {
+                        Text("Sign Up").bold()
+                    }
+                }
+                Section(header: Text("If you already have an account:")) {
+                    Button(action: {
+                        // TODO
+                        authModel.signIn(emailAddress: emailAddress,
+                                         password: password)
+                    }) {
+                        Text("Sign In")
+                    }
+                }
+            }.navigationTitle("Welcome")
+                .toolbar {
+                    ToolbarItemGroup(placement: .cancellationAction) {
+                        Button {
+                            showingSheet.toggle()
+                        } label: {
+                            Text("Forgot password?")
+                        }
+                        .sheet(isPresented: $showingSheet) {
+                            ResetPasswordView()
+                        }
+                    }
+                }
+        }
+    }
 }
 
 struct SignUpView_Previews: PreviewProvider {

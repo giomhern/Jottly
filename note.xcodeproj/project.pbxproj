@@ -21,6 +21,7 @@
 		C02E2A7D2B81C9FA00B830B0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C02E2A7C2B81C9FA00B830B0 /* FirebaseAuth */; };
 		C02E2A7F2B81CE9300B830B0 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E2A7E2B81CE9300B830B0 /* SignUpView.swift */; };
 		C02E2A812B81CEB400B830B0 /* HolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E2A802B81CEB400B830B0 /* HolderView.swift */; };
+		C02E2A832B82AD1800B830B0 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02E2A822B82AD1700B830B0 /* ResetPasswordView.swift */; };
 		C052D6E32B8182BC00779C1B /* noteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C052D6E22B8182BC00779C1B /* noteApp.swift */; };
 		C052D6E52B8182BC00779C1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C052D6E42B8182BC00779C1B /* ContentView.swift */; };
 		C052D6E72B8182BF00779C1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C052D6E62B8182BF00779C1B /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		C02E2A7A2B81C9D500B830B0 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		C02E2A7E2B81CE9300B830B0 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C02E2A802B81CEB400B830B0 /* HolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolderView.swift; sourceTree = "<group>"; };
+		C02E2A822B82AD1700B830B0 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		C052D6DF2B8182BC00779C1B /* note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = note.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C052D6E22B8182BC00779C1B /* noteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = noteApp.swift; sourceTree = "<group>"; };
 		C052D6E42B8182BC00779C1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				C02E2A722B81885800B830B0 /* NoteViewModel.swift */,
 				C02E2A762B818AF700B830B0 /* FormView.swift */,
 				C052D6E42B8182BC00779C1B /* ContentView.swift */,
+				C02E2A822B82AD1700B830B0 /* ResetPasswordView.swift */,
 				C02E2A7E2B81CE9300B830B0 /* SignUpView.swift */,
 				C02E2A802B81CEB400B830B0 /* HolderView.swift */,
 				C02E2A7A2B81C9D500B830B0 /* AuthViewModel.swift */,
@@ -332,6 +335,7 @@
 				C02E2A7B2B81C9D500B830B0 /* AuthViewModel.swift in Sources */,
 				C02E2A7F2B81CE9300B830B0 /* SignUpView.swift in Sources */,
 				C052D6E32B8182BC00779C1B /* noteApp.swift in Sources */,
+				C02E2A832B82AD1800B830B0 /* ResetPasswordView.swift in Sources */,
 				C052D71C2B8184D000779C1B /* Note.swift in Sources */,
 				C02E2A792B81B9E900B830B0 /* DetailsView.swift in Sources */,
 			);

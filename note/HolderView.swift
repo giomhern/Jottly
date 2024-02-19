@@ -24,6 +24,14 @@ struct HolderView: View {
             } else {
                 ContentView()
             }
+        }.onAppear {
+            authModel.listenToAuthState()
         }
+    }
+}
+
+struct HolderView_Previews: PreviewProvider {
+    static var previews: some View {
+        HolderView()
     }
 }
