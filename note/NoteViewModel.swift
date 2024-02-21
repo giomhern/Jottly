@@ -10,6 +10,7 @@ import FirebaseFirestore
 
 // centralize all of the functionality you need and then use them in the your views
 class NoteViewModel: ObservableObject {
+    // implemented read and write only to authenticared users
     @Published var notes = [Note]()
     private lazy var databaseReference: CollectionReference? = {
         guard let user = Auth.auth().currentUser?.uid else {return nil}
